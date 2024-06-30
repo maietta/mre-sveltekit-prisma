@@ -22,7 +22,8 @@ RUN bun run --bun bun install
 
 # Generate Prisma Client
 COPY --link prisma .
-RUN bunx --bun prisma generate
+# RUN bunx --bun prisma generate
+RUN npx prisma generate
 
 # Copy application code
 COPY --link . .
