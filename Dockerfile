@@ -38,15 +38,15 @@ FROM oven/bun:${BUN_VERSION}
 COPY --from=builder /app .
 
 # Install curl for the healthcheck
-RUN apt update && \
-    apt-get install -y curl --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean
+# RUN apt update && \
+#     apt-get install -y curl --no-install-recommends && \
+#     rm -rf /var/lib/apt/lists/* && \
+#     apt-get clean
 
 ENV PORT=3000
 EXPOSE 3000/tcp
 USER bun
 
-HEALTHCHECK --interval=5s --timeout=5s --start-period=5s --retries=3 CMD curl --fail http://localhost:3000/healthcheck
+#HEALTHCHECK --interval=5s --timeout=5s --start-period=5s --retries=3 CMD curl --fail http://localhost:3000/healthcheck
 
 CMD ["bun", "build/index.js"]
