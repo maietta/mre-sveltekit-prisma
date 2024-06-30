@@ -7,3 +7,17 @@ bun create svelte@latest
 Switch the adaptor:
 bun add -d svelte-adapter-bun
     (Modify the svelte.config.js to refernce the svelte-adapter-bun)
+
+Add Prisma CLI & Client
+bun add -D prisma
+bun prisma init
+
+Run the SQL create script found in sql/ to create some sample tables.
+
+Introspect the database to create a local Prisma schema.
+bun prisma db pull
+
+Now we are ready for setting up our application.
+
+Add the Prisma Client dependency and generate the local client interface, which by default is included in node_modules/
+bun add @prisma/client
