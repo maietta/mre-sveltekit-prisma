@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: sveltekit_postgres
+    environment:
+      POSTGRES_USER: sveltekit_user
+      POSTGRES_PASSWORD: sveltekit_password
+      POSTGRES_DB: sveltekit_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
