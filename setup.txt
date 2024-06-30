@@ -17,7 +17,12 @@ Run the SQL create script found in sql/ to create some sample tables.
 Introspect the database to create a local Prisma schema.
 bun prisma db pull
 
+(Side note: For the purposes of this demo, we will not be baselining the database, but this would be an important step in production.)
+
 Now we are ready for setting up our application.
 
 Add the Prisma Client dependency and generate the local client interface, which by default is included in node_modules/
 bun add @prisma/client
+
+Generate the client interface, which will be by default, located in node_modules/, a directory that is not included in our commits.
+
