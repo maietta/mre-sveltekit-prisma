@@ -31,3 +31,17 @@ bun prisma generate
 NOTE: This is where we begin to see a problem? This might have been fixed, but we're about to find out. Running the generate command appears to work.
 
 With all the prerequisites out of the way, let's wire up the database to the app and display something out of the database.
+
+After dropping in the Dockerfile and attempting to build, we get hit with the following:
+
+PrismaClientInitializationError: Prisma Client could not locate the Query Engine for runtime "debian-openssl-1.1.x".
+2.462 
+2.462 This happened because Prisma Client was generated for "rhel-openssl-3.0.x", but the actual deployment required "debian-openssl-1.1.x".
+2.462 Add "debian-openssl-1.1.x" to `binaryTargets` in the "schema.prisma" file and run `prisma generate` after saving it:
+2.462 
+2.462 generator client {
+2.462   provider      = "prisma-client-js"
+2.462   binaryTargets = ["native", "debian-openssl-1.1.x"]
+2.462 }
+
+Let's fix that by updating the prisma.schema and re-running the generate client command.
