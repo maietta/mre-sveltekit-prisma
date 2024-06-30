@@ -1,29 +1,39 @@
 ARG BUN_VERSION=1.1.17
-# FROM oven/bun:${BUN_VERSION} AS builder
-FROM node:latest AS builder
+FROM oven/bun:${BUN_VERSION} AS builder
 
-RUN npm install -g bun
+# Install required dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    curl \
+    xz-utils \
+    && rm -rf /var/lib/apt/lists/*
 
-# Let's attempt to install NodeJS to get the Prisma Client to work. This was suggested in an issue filed on Github.
-# RUN apt update && \
-#     apt-get install -y nodejs --no-install-recommends && \
-#     rm -rf /var/lib/apt/lists/* && \
-#     apt-get clean
+# Set the Node.js version
+ENV NODE_VERSION=20.15.0
+
+# Download and install Node.js
+RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz -o node-v${NODE_VERSION}-linux-x64.tar.xz && \
+    tar -xf node-v${NODE_VERSION}-linux-x64.tar.xz && \
+    mv node-v${NODE_VERSION}-linux-x64 /usr/local/node && \
+    ln -s /usr/local/node/bin/node /usr/local/bin/node && \
+    ln -s /usr/local/node/bin/npm /usr/local/bin/npm && \
+    ln -s /usr/local/node/bin/npx /usr/local/bin/npx && \
+    rm node-v${NODE_VERSION}-linux-x64.tar.xz
+
+# Verify installation
+RUN node --version && npm --version
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
 COPY --link bun.lockb package.json ./
-# RUN bun install
-
-# Let's try a bun inception, per https://x.com/jarredsumner/status/1807441823616659725
-RUN bun run --bun bun install
+RUN bun install
 
 # Generate Prisma Client
 COPY --link prisma .
 # RUN bunx --bun prisma generate
-RUN npx prisma generate
+RUN bun prisma generate
 
 # Copy application code
 COPY --link . .
@@ -34,19 +44,27 @@ RUN bun run build
 # Remove development dependencies
 RUN rm -rf node_modules && bun install --ci
 
-FROM oven/bun:${BUN_VERSION} 
-COPY --from=builder /app .
+FROM oven/bun:${BUN_VERSION}
 
-# Install curl for the healthcheck
-RUN apt update && \
-    apt-get install -y curl --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get clean
+# Copy Node.js binaries and curl from the builder stage
+COPY --from=builder /usr/local/node /usr/local/node
+COPY --from=builder /usr/bin/curl /usr/bin/curl
+COPY --from=builder /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu
 
+# Create symbolic links to Node.js binaries
+RUN ln -s /usr/local/node/bin/node /usr/local/bin/node && \
+    ln -s /usr/local/node/bin/npm /usr/local/bin/npm && \
+    ln -s /usr/local/node/bin/npx /usr/local/bin/npx
+
+# Copy the built application and necessary files from the builder stage
+COPY --from=builder /app /app
+
+# Set environment variables and expose the port
 ENV PORT=3000
 EXPOSE 3000/tcp
-USER bun
 
+# Set user and define healthcheck
+USER bun
 HEALTHCHECK --interval=5s --timeout=5s --start-period=5s --retries=3 CMD curl --fail http://localhost:3000/healthcheck
 
 CMD ["bun", "build/index.js"]
