@@ -1,0 +1,5 @@
+The following steps were taken to set this project up:
+
+bun create svelte@latest
+    (Choose ESLint, Prettier, Experimental Svelte 5 support)
+
