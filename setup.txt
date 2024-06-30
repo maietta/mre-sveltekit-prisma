@@ -26,3 +26,8 @@ bun add @prisma/client
 
 Generate the client interface, which will be by default, located in node_modules/, a directory that is not included in our commits.
 
+bun prisma generate
+
+NOTE: This is where we begin to see a problem? This might have been fixed, but we're about to find out. Running the generate command appears to work.
+
+With all the prerequisites out of the way, let's wire up the database to the app and display something out of the database.
