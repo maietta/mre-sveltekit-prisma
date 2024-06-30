@@ -4,7 +4,6 @@ import { prisma } from '$lib/server/prisma'; // Single source of truth for this 
 export const load = (async () => {
 
     const data = await prisma.user.findMany();
-
     return {
         users: data
     };
