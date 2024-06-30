@@ -1,5 +1,9 @@
 The following steps were taken to set this project up:
 
+Create project:
 bun create svelte@latest
     (Choose ESLint, Prettier, Experimental Svelte 5 support)
 
+Switch the adaptor:
+bun add -d svelte-adapter-bun
+    (Modify the svelte.config.js to refernce the svelte-adapter-bun)
