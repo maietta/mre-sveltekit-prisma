@@ -12,7 +12,10 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY --link bun.lockb package.json ./
-RUN bun install
+# RUN bun install
+
+# Let's try a bun inception, per https://x.com/jarredsumner/status/1807441823616659725
+RUN bun run --bun bun install
 
 # Generate Prisma Client
 COPY --link prisma .
