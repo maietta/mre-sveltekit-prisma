@@ -1,6 +1,12 @@
 ARG BUN_VERSION=1.1.17
 FROM oven/bun:${BUN_VERSION} AS builder
 
+# Let's attempt to install NodeJS to get the Prisma Client to work. This was suggested in an issue filed on Github.
+RUN apt update && \
+    apt-get install -y nodejs --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
+
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -10,7 +16,7 @@ RUN bun install
 
 # Generate Prisma Client
 COPY --link prisma .
-RUN bun prisma generate
+RUN np prisma generate
 
 # Copy application code
 COPY --link . .

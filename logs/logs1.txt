@@ -1,0 +1,375 @@
+[2024-Jun-30 14:53:51.803978]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 842B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/oven/bun:1.1.17
+
+[2024-Jun-30 14:53:52.054244]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#2 DONE 0.4s
+
+[2024-Jun-30 14:53:52.162967]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [builder 1/9] FROM docker.io/oven/bun:1.1.17@sha256:7b5c05b562efbbec704df426a9eef18f3b935bdc868678895a935bf120bda062
+#4 CACHED
+
+#5 [builder 2/9] WORKDIR /app
+#5 DONE 0.1s
+
+#6 [internal] load build context
+
+[2024-Jun-30 14:53:52.394252]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#6 transferring context: 117.30kB 0.1s done
+#6 DONE 0.1s
+
+#7 [builder 3/9] COPY --link bun.lockb package.json ./
+#7 DONE 0.0s
+
+#8 [builder 4/9] RUN bun install
+
+[2024-Jun-30 14:53:52.459451]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#8 0.216 bun install v1.1.17 (bb66bba1)
+
+[2024-Jun-30 14:53:52.664928]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#8 0.271 Resolving dependencies
+
+[2024-Jun-30 14:53:54.008363]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#8 1.757 Resolved, downloaded and extracted [2]
+
+[2024-Jun-30 14:53:59.154528]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#8 6.857 Saved lockfile
+#8 6.857
+#8 6.857 + @sveltejs/adapter-auto@3.2.2
+#8 6.857 + @sveltejs/kit@2.5.18
+#8 6.857 +
+
+[2024-Jun-30 14:53:59.207499]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+@sveltejs/vite-plugin-svelte@3.1.1
+#8 6.916 + @types/eslint@8.56.10
+#8 6.916 + eslint@9.6.0
+#8 6.916 + eslint-config-prettier@9.1.0
+#8 6.916 + eslint-plugin-svelte@2.41.0
+#8 6.916 + globals@15.7.0
+#8 6.916 + prettier@3.3.2
+#8 6.916 + prettier-plugin-svelte@3.2.5
+#8 6.916 + prisma@5.16.1
+#8 6.916 + svelte@5.0.0-next.167
+#8 6.916 + svelte-adapter-bun@0.5.2
+#8 6.916 + svelte-check@3.8.4
+#8 6.916 + tslib@2.6.3
+#8 6.916 + typescript@5.5.2
+#8 6.916 + typescript-eslint@8.0.0-alpha.37
+#8 6.916 + vite@5.3.2
+#8 6.916 + @prisma/client@5.16.1
+#8 6.916
+#8 6.916 224 packages installed [6.70s]
+#8 6.916
+#8 6.916 Blocked 1 postinstall. Run `bun pm untrusted` for details.
+#8 DONE 7.0s
+
+#9 [builder 5/9] COPY --link prisma .
+
+[2024-Jun-30 14:53:59.438481]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#9 DONE 0.1s
+
+#10 [builder 6/9] RUN bun prisma generate
+
+[2024-Jun-30 14:54:00.931288]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#10 DONE 1.6s
+
+[2024-Jun-30 14:54:01.058545]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#11 [builder 7/9] COPY --link . .
+#11 DONE 0.1s
+
+[2024-Jun-30 14:54:01.173062]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#12 [builder 8/9] RUN bun run build
+#12 0.114 $ vite build
+
+[2024-Jun-30 14:54:01.850655]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#12 0.800 ▲ [WARNING] Cannot find base config file "./.svelte-kit/tsconfig.json" [tsconfig.json]
+#12 0.800
+#12 0.800 tsconfig.json:2:12:
+#12 0.800 2 │ "extends": "./.svelte-kit/tsconfig.json",
+#12 0.800 ╵ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#12 0.800
+
+[2024-Jun-30 14:54:03.784143]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#12 2.733 2:54:04 PM [vite-plugin-svelte] You are using Svelte 5.0.0-next.167. Svelte 5 support is experimental, breaking changes can occur in any release until this notice is removed.
+#12 2.733 work in progress:
+#12 2.733 - svelte-inspector is disabled until dev mode implements node to code mapping
+#12 2.733
+
+[2024-Jun-30 14:54:04.018367]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#12 2.817 vite v5.3.2 building SSR bundle for production...
+#12 2.967 transforming...
+
+[2024-Jun-30 14:54:05.680260]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#12 4.630 ✓ 94 modules transformed.
+
+[2024-Jun-30 14:54:05.900436]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#12 4.850 rendering chunks...
+
+[2024-Jun-30 14:54:06.053297]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+
+
+[2024-Jun-30 14:54:06.755367]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#12 5.703 184 | postMessage(...args) {
+#12 5.703 185 | return this.#worker.postMessage(...args);
+#12 5.703 186 | }
+#12 5.703 187 | #onClose(e) {
+#12 5.703 188 | this.#onExitPromise = e.code, this.emit("exit", e.code);
+#12 5.703 189 | #onError(event) {
+#12 5.703 ^
+#12 5.703 error: 38 | var clientVersion = version;
+#12 5.703 39 |
+#12 5.703 40 | // src/scripts/default-index.ts
+#12 5.703 41 | var PrismaClient = class {
+#12 5.703 42 | constructor() {
+#12 5.703 43 | throw new Error('@prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.');
+#12 5.703 ^
+#12 5.703 error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+#12 5.703 at new PrismaClient (/app/node_modules/.prisma/client/default.js:43:11)
+#12 5.703 at /app/.svelte-kit/output/server/entries/pages/_page.server.ts.js:2:16
+#12 5.703
+#12 5.703 cause: {
+#12 5.703 "isTrusted": true
+#12 5.703 }
+#12 5.703
+#12 5.703 at #onError (node:worker_threads:189:11)
+
+[2024-Jun-30 14:54:06.909954]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+#12 5.704
+#12 5.704 Bun v1.1.17 (Linux x64 baseline)
+#12 5.749 error: script "build" exited with code 1
+#12 ERROR: process "/bin/sh -c bun run build" did not complete successfully: exit code: 1
+------
+> [builder 8/9] RUN bun run build:
+5.703 at /app/.svelte-kit/output/server/entries/pages/_page.server.ts.js:2:16
+5.703
+5.703 cause: {
+5.703 "isTrusted": true
+5.703 }
+5.703
+5.703 at #onError (node:worker_threads:189:11)
+5.704
+5.704 Bun v1.1.17 (Linux x64 baseline)
+5.749 error: script "build" exited with code 1
+------
+
+[2024-Jun-30 14:54:06.914479]
+
+[COMMAND] docker exec iggss0s bash -c 'bash /artifacts/build.sh'
+[OUTPUT]
+Dockerfile:19
+--------------------
+17 |
+18 | # Build application
+19 | >>> RUN bun run build
+20 |
+21 | # Remove development dependencies
+--------------------
+ERROR: failed to solve: process "/bin/sh -c bun run build" did not complete successfully: exit code: 1
+
+[2024-Jun-30 14:54:06.986927] Oops something is not okay, are you okay? 😢
+
+[2024-Jun-30 14:54:06.989344] #0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 842B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/oven/bun:1.1.17
+#2 DONE 0.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [builder 1/9] FROM docker.io/oven/bun:1.1.17@sha256:7b5c05b562efbbec704df426a9eef18f3b935bdc868678895a935bf120bda062
+#4 CACHED
+
+#5 [builder 2/9] WORKDIR /app
+#5 DONE 0.1s
+
+#6 [internal] load build context
+#6 transferring context: 117.30kB 0.1s done
+#6 DONE 0.1s
+
+#7 [builder 3/9] COPY --link bun.lockb package.json ./
+#7 DONE 0.0s
+
+#8 [builder 4/9] RUN bun install
+#8 0.216 bun install v1.1.17 (bb66bba1)
+#8 0.271 Resolving dependencies
+#8 1.757 Resolved, downloaded and extracted [2]
+#8 6.857 Saved lockfile
+#8 6.857
+#8 6.857 + @sveltejs/adapter-auto@3.2.2
+#8 6.857 + @sveltejs/kit@2.5.18
+#8 6.857 + @sveltejs/vite-plugin-svelte@3.1.1
+#8 6.916 + @types/eslint@8.56.10
+#8 6.916 + eslint@9.6.0
+#8 6.916 + eslint-config-prettier@9.1.0
+#8 6.916 + eslint-plugin-svelte@2.41.0
+#8 6.916 + globals@15.7.0
+#8 6.916 + prettier@3.3.2
+#8 6.916 + prettier-plugin-svelte@3.2.5
+#8 6.916 + prisma@5.16.1
+#8 6.916 + svelte@5.0.0-next.167
+#8 6.916 + svelte-adapter-bun@0.5.2
+#8 6.916 + svelte-check@3.8.4
+#8 6.916 + tslib@2.6.3
+#8 6.916 + typescript@5.5.2
+#8 6.916 + typescript-eslint@8.0.0-alpha.37
+#8 6.916 + vite@5.3.2
+#8 6.916 + @prisma/client@5.16.1
+#8 6.916
+#8 6.916 224 packages installed [6.70s]
+#8 6.916
+#8 6.916 Blocked 1 postinstall. Run `bun pm untrusted` for details.
+#8 DONE 7.0s
+
+#9 [builder 5/9] COPY --link prisma .
+#9 DONE 0.1s
+
+#10 [builder 6/9] RUN bun prisma generate
+#10 DONE 1.6s
+
+#11 [builder 7/9] COPY --link . .
+#11 DONE 0.1s
+
+#12 [builder 8/9] RUN bun run build
+#12 0.114 $ vite build
+#12 0.800 ▲ [WARNING] Cannot find base config file "./.svelte-kit/tsconfig.json" [tsconfig.json]
+#12 0.800
+#12 0.800 tsconfig.json:2:12:
+#12 0.800 2 │ "extends": "./.svelte-kit/tsconfig.json",
+#12 0.800 ╵ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#12 0.800
+#12 2.733 2:54:04 PM [vite-plugin-svelte] You are using Svelte 5.0.0-next.167. Svelte 5 support is experimental, breaking changes can occur in any release until this notice is removed.
+#12 2.733 work in progress:
+#12 2.733 - svelte-inspector is disabled until dev mode implements node to code mapping
+#12 2.733
+#12 2.817 vite v5.3.2 building SSR bundle for production...
+#12 2.967 transforming...
+#12 4.630 ✓ 94 modules transformed.
+#12 4.850 rendering chunks...
+#12 5.703 184 | postMessage(...args) {
+#12 5.703 185 | return this.#worker.postMessage(...args);
+#12 5.703 186 | }
+#12 5.703 187 | #onClose(e) {
+#12 5.703 188 | this.#onExitPromise = e.code, this.emit("exit", e.code);
+#12 5.703 189 | #onError(event) {
+#12 5.703 ^
+#12 5.703 error: 38 | var clientVersion = version;
+#12 5.703 39 |
+#12 5.703 40 | // src/scripts/default-index.ts
+#12 5.703 41 | var PrismaClient = class {
+#12 5.703 42 | constructor() {
+#12 5.703 43 | throw new Error('@prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.');
+#12 5.703 ^
+#12 5.703 error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.
+#12 5.703 at new PrismaClient (/app/node_modules/.prisma/client/default.js:43:11)
+#12 5.703 at /app/.svelte-kit/output/server/entries/pages/_page.server.ts.js:2:16
+#12 5.703
+#12 5.703 cause: {
+#12 5.703 "isTrusted": true
+#12 5.703 }
+#12 5.703
+#12 5.703 at #onError (node:worker_threads:189:11)
+#12 5.704
+#12 5.704 Bun v1.1.17 (Linux x64 baseline)
+#12 5.749 error: script "build" exited with code 1
+#12 ERROR: process "/bin/sh -c bun run build" did not complete successfully: exit code: 1
+------
+> [builder 8/9] RUN bun run build:
+5.703 at /app/.svelte-kit/output/server/entries/pages/_page.server.ts.js:2:16
+5.703
+5.703 cause: {
+5.703 "isTrusted": true
+5.703 }
+5.703
+5.703 at #onError (node:worker_threads:189:11)
+5.704
+5.704 Bun v1.1.17 (Linux x64 baseline)
+5.749 error: script "build" exited with code 1
+------
+Dockerfile:19
+--------------------
+17 |
+18 | # Build application
+19 | >>> RUN bun run build
+20 |
+21 | # Remove development dependencies
+--------------------
+ERROR: failed to solve: process "/bin/sh -c bun run build" did not complete successfully: exit code: 1
+
+[2024-Jun-30 14:54:06.991671] Deployment failed. Removing the new version of your application.

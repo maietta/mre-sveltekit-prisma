@@ -45,3 +45,27 @@ PrismaClientInitializationError: Prisma Client could not locate the Query Engine
 2.462 }
 
 Let's fix that by updating the prisma.schema and re-running the generate client command.
+
+That did not fix the problem, but now we are starting to reproduce the issues I expierenced.
+
+See logs/ for the various log outputs after each fix attempt.
+
+log2-after-installing-nodejs.txt details what happens when we go ahead and update our Dockerfile to include nodejs. Note that building the docker image locally no longer is successful because now we generate an error. I believe this error might be a big clue as to what is happening.
+
+Let's now try and generate our client outside the node_modules/ and in our project instead, but I think this is a moot point, since we now have errors that seem to point to the problem.
+
+Now that we've got our Prisma.schema with the following:
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+  output        = "../src/lib/server/prisma/client"
+},
+
+We need to run `bun prisma generate` once again, which will build a new client in our src/lib/server/prisma/client directory. Adjust the local reference in src/lib/prisma.ts.
+
+Afer this, we now have a log3. "Error when evaluating SSR module /src/lib/server/prisma/client/index-browser.js: - ReferenceError: exports is not defined"
+
+Okay, now I'm getting stumped.
+
+Next, I try and update Dockerfile to use `npx prisma generate` instead of `bun prisma generate`. This results in same problem. This is not our issue.

@@ -1,0 +1,46 @@
+nick@fedora:~/Projects/mre-sveltekit-prisma$ docker build .
+[+] Building 12.3s (9/16)                                                                                                                               docker:default
+ => [internal] load build definition from Dockerfile                                                                                                              0.0s
+ => => transferring dockerfile: 1.09kB                                                                                                                            0.0s
+ => [internal] load metadata for docker.io/oven/bun:1.1.17                                                                                                        0.4s
+ => [internal] load .dockerignore                                                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                                                   0.0s
+ => CACHED [builder  1/10] FROM docker.io/oven/bun:1.1.17@sha256:7b5c05b562efbbec704df426a9eef18f3b935bdc868678895a935bf120bda062                                 0.0s
+ => [internal] load build context                                                                                                                                 0.2s
+ => => transferring context: 496.46kB                                                                                                                             0.2s
+ => [builder  2/10] RUN apt update &&     apt-get install -y nodejs --no-install-recommends &&     rm -rf /var/lib/apt/lists/* &&     apt-get clean               8.5s
+ => [builder  3/10] WORKDIR /app                                                                                                                                  0.1s 
+ => [builder  4/10] COPY --link bun.lockb package.json ./                                                                                                         0.1s 
+ => ERROR [builder  5/10] RUN bun install                                                                                                                         3.1s 
+------                                                                                                                                                                 
+ > [builder  5/10] RUN bun install:                                                                                                                                    
+0.171 bun install v1.1.17 (bb66bba1)
+0.173 Resolving dependencies
+1.229 Resolved, downloaded and extracted [2]
+2.632 /app/node_modules/@prisma/debug/dist/index.js:115
+2.632 globalThis.DEBUG ?? (globalThis.DEBUG = processEnv.DEBUG ?? "");
+2.632                   ^
+2.632 
+2.632 SyntaxError: Unexpected token '?'
+2.632     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+2.632     at Module._compile (internal/modules/cjs/loader.js:963:27)
+2.632     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+2.632     at Module.load (internal/modules/cjs/loader.js:863:32)
+2.632     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+2.632     at Module.require (internal/modules/cjs/loader.js:887:19)
+2.632     at require (internal/modules/cjs/helpers.js:74:18)
+2.632     at Object.<anonymous> (/app/node_modules/@prisma/engines/dist/scripts/postinstall.js:26:29)
+2.632     at Module._compile (internal/modules/cjs/loader.js:999:30)
+2.632     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+2.632 
+2.632 error: postinstall script from "@prisma/engines" exited with 1
+------
+Dockerfile:15
+--------------------
+  13 |     
+  14 |     COPY --link bun.lockb package.json ./
+  15 | >>> RUN bun install
+  16 |     
+  17 |     # Generate Prisma Client
+--------------------
+ERROR: failed to solve: process "/bin/sh -c bun install" did not complete successfully: exit code: 1
