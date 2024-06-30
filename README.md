@@ -1,5 +1,7 @@
 # MRE for SvelteKit with Prisma
 
+UPDATE: See bottom of this file for a "solution".
+
 This project uses Bun, exclusively.
 
 This project is deployed via the included Dockerfile, which can be tested locally.
@@ -55,3 +57,12 @@ Dockerfile:15
 --------------------
 ERROR: failed to solve: process "/bin/sh -c bun install" did not complete successfully: exit code: 1
 ```
+
+
+Temperary Solution:
+
+I switched out oven/bun docker image to use ndoe:latest instead, then added bun via npm install -g bun.
+
+I also switched to npx instead of bun for the prisma generate command.
+
+These teems to be the fix. I was able to get a deployment out with this.
